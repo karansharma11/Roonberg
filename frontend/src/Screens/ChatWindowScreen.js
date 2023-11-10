@@ -24,7 +24,7 @@ import { ColorRing, ThreeDots } from "react-loader-spinner";
 import Button from "react-bootstrap/Button";
 import { Editor } from "@tinymce/tinymce-react";
 // import { EditorValue } from "react-rte";
-import MUIRichTextEditor from 'mui-rte';
+// import MUIRichTextEditor from 'mui-rte';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MdCancel } from "react-icons/md";
 
