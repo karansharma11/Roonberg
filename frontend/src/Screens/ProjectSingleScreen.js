@@ -300,7 +300,7 @@ function ProjectSingleScreen() {
                         <>
                           <Card className="chatboxes">
                             <Card.Header>
-                              {categoryData && assignedAgent.categoryName}
+                              {categoryData && assignedAgent.categoryId}
                             </Card.Header>
                             <Card.Body>
                               <Link to={`/chatWindowScreen/${conversion._id}`}>
@@ -309,7 +309,7 @@ function ProjectSingleScreen() {
                                   type="button"
                                   // onClick={conversionHandler(conversion._id)}
                                 >
-                                  {categoryData && assignedAgent.agentName}
+                                  {categoryData && assignedAgent.agentId}
                                 </Button>
                               </Link>
                             </Card.Body>
