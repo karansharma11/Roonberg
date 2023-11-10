@@ -18,6 +18,7 @@ import EmailParser from "email-reply-parser";
 import Notification from "./Models/notificationModel.js";
 import http from 'http';
 import fs from 'fs';
+import { Server } from 'socket.io';
 
 
 
@@ -69,9 +70,7 @@ app.use("/api/doc", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/api", (req, res) => {
-  res.send("Welcome to Roonberg World");
-});
+
 
 app.use("/api/seed", seedRouter);
 app.use("/api/user", userRouter);
@@ -81,6 +80,9 @@ app.use("/api/conversation", conversationRouter);
 app.use("/api/message", MessageRouter);
 app.use("/api/notification", NotificationRouter);
 
+app.get("/api", (req, res) => {
+  res.send("Welcome to Roonberg World");
+});
 const transporter = nodemailer.createTransport({
   service: "SMTP",
   auth: {
@@ -121,78 +123,6 @@ export async function storeNotification(message, notifyUser, status, type) {
   console.log("notifyme-------", notify);
 }
 
-// Function to process emails
-// async function processEmails() {
-//   const imapConfig = {
-//     user: 'read@login.roonberg.com',
-//     password: 'pass@$123',
-//     host: 'login.roonberg.com',
-//     port: 993, // IMAP over SSL
-//     tls: true,
-//     authTimeout: 30000,
-//   };
-
-//   const imap = new Imap(imapConfig);
-
-//   imap.once('ready', () => {
-//     imap.openBox('INBOX', false, (err, mailbox) => {
-//       if (err) throw err;
-
-//       imap.search(['UNSEEN'], (err, results) => {
-//         if (err) throw err;
-
-//         results.forEach((emailNumber) => {
-//           const emailMessage = imap.fetch(emailNumber, { bodies: '' });
-//           emailMessage.on('message', (msg) => {
-//             msg.on('body', (stream) => {
-//               let message = '';
-//               stream.on('data', (chunk) => {
-//                 message += chunk.toString('utf8');
-//               });
-//               stream.once('end', () => {
-//                 const parser = new EmailParser(message);
-//                 const { text, from, to, subject, date } = parser.parseReply();
-
-//                 // Your processing logic here
-//                 console.log('From:', from);
-//                 console.log('To:', to);
-//                 console.log('Subject:', subject);
-//                 console.log('Text:', text);
-
-//                 // Example: Send an email reply
-//                 sendEmail(
-//                   from,
-//                   'Re: ' + subject,
-//                   'Your reply message goes here'
-//                 );
-
-//                 // Mark the email as seen
-//                 imap.addFlags(emailNumber, ['\\Seen'], (err) => {
-//                   if (err) console.error(err);
-//                 });
-//               });
-//             });
-//           });
-//         });
-
-//         // Close the connection
-//         imap.end();
-//       });
-//     });
-//   });
-
-//   imap.once('error', (err) => {
-//     console.error(err);
-//   });
-
-//   imap.connect();
-// }
-
-// cron.schedule('* * * * *', () => {
-//   console.log('This task will run every minute');
-//   processEmails();
-// });
-
 const _dirname = path.resolve();
 app.use(express.static(path.join(_dirname, "frontend/build")));
 app.get("*", (req, res) =>
@@ -204,7 +134,6 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-import { Server } from 'socket.io';
 const io = new Server(server, {
   cors: {
     origin: [
