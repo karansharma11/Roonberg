@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { IoSendSharp } from "react-icons/io5";
 import { RxFontStyle } from "react-icons/rx";
-import MyStatefulEditor from "../Components/rte_test";
+// import MyStatefulEditor from "../Components/rte_test";
 import { Store } from "../Store";
 import { Socket, io } from "socket.io-client";
 import axios from "axios";
@@ -830,12 +830,12 @@ function ChatWindowScreen() {
                   onChange={(e) => setNewMessage(e.target.value)}
                 />
                 <div style={{ display: showFontStyle ? "block" : "none" }} className="richEditor" >
-                  <MyStatefulEditor
+                  {/* <MyStatefulEditor
                     markup=""
                     clearEditor={clearEditor}
         setClearEditor={setClearEditor}
                     onChange={onChange}
-                  />
+                  /> */}
                    {/* <Editor
           value={editorValue.content}
           init={{

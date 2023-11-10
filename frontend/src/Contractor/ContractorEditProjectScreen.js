@@ -317,10 +317,10 @@ function ContractorEditProject() {
                           </>
                         ) : (
                           <>
-                            {categoryData && assignedAgent && assignedAgent.categoryName && (
+                            {categoryData && assignedAgent && assignedAgent.categoryId && (
                               <Card className="chatboxes">
                                 <Card.Header>
-                                  {assignedAgent.categoryName}
+                                  {assignedAgent.categoryId}
                                 </Card.Header>
                                 <Card.Body>
                                   <Link to={`/chatWindowScreen/${conversion._id}`}>
@@ -329,7 +329,7 @@ function ContractorEditProject() {
                                       type="button"
                                     // onClick={conversionHandler(conversion._id)}
                                     >
-                                      {assignedAgent.agentName}
+                                      {assignedAgent.agentId}
                                     </Button>
                                   </Link>
                                 </Card.Body>

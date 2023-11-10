@@ -541,10 +541,10 @@ function AdminEditProject() {
                             </>
                           ) : (
                             <>
-                              {categoryData && assignedAgent && assignedAgent.categoryName && (
+                              { assignedAgent && assignedAgent.categoryId && (
                                 <Card className="chatboxes">
                                   <Card.Header>
-                                    {assignedAgent.categoryName}
+                                    {assignedAgent.categoryId}
                                   </Card.Header>
                                   <Card.Body>
                                     <Link to={`/chatWindowScreen/${conversion._id}`}>
@@ -553,7 +553,7 @@ function AdminEditProject() {
                                         type="button"
                                       // onClick={conversionHandler(conversion._id)}
                                       >
-                                        {assignedAgent.agentName}
+                                        {assignedAgent.agentId}
                                       </Button>
                                     </Link>
                                   </Card.Body>
