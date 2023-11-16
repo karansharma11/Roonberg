@@ -393,8 +393,8 @@ io.on('connection', (socket) => {
       base64Image.replace(/^data:image\/\w+;base64,/, ''),
       'base64'
     );
-    const filePath = path.join(_dirname, `frontend/public/${Date.now()}.jpeg`);
-    const imageFileName = `s${Date.now()}.jpeg`;
+    const filePath = path.join(_dirname, `/frontend/public/${Date.now()}.jpeg`);
+    const imageFileName = `${Date.now()}.jpeg`;
     console.log('imageFileName' , imageFileName)
 
     fs.writeFile(filePath, imageBuffer, (err) => {
