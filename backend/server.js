@@ -395,6 +395,7 @@ io.on('connection', (socket) => {
     );
     const filePath = path.join(_dirname, `uploads/${Date.now()}.jpeg`);
     const imageFileName = `uploads/${Date.now()}.jpeg`;
+    console.log('imageFileName' , imageFileName)
 
     fs.writeFile(filePath, imageBuffer, (err) => {
       if (err) {
