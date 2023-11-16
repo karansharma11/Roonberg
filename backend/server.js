@@ -144,7 +144,7 @@ const io = new Server(server, {
 
 
 const port = process.env.PORT || 5000;
-app.use('/uploads', express.static(path.join(_dirname, 'frontend/uploads')));
+//app.use('/uploads', express.static(path.join(_dirname, 'frontend/uploads')));
 app.get('/', (req, res) => {
   res.send('Server is running and Socket.IO is ready.');
 });
@@ -393,8 +393,8 @@ io.on('connection', (socket) => {
       base64Image.replace(/^data:image\/\w+;base64,/, ''),
       'base64'
     );
-    const filePath = path.join(_dirname, `frontend/uploads/${Date.now()}.jpeg`);
-    const imageFileName = `uploads/${Date.now()}.jpeg`;
+    const filePath = path.join(_dirname, `frontend/public/${Date.now()}.jpeg`);
+    const imageFileName = `s${Date.now()}.jpeg`;
     console.log('imageFileName' , imageFileName)
 
     fs.writeFile(filePath, imageBuffer, (err) => {
