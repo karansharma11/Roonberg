@@ -872,23 +872,26 @@ function ChatWindowScreen() {
                     style={{ display: isRecording ? "none" : "block" }}
                   />
 
-                  {/* <BsFillMicMuteFill
+                  <BsFillMicMuteFill
                     onClick={stopRecording}
                     disabled={!isRecording}
                     style={{ display: !isRecording ? "none" : "block" }}
-                  /> */}
-                  <Audio
-                   onClick={stopRecording}
+                  />
+                  <div   onClick={stopRecording}
                    disabled={!isRecording}
-                   style={{ display: !isRecording ? "none" : "block" }}
-  height="100"
-  width="100"
-  color="#4fa94d"
+                   style={{ display: !isRecording ? "none" : "block" }}>
+                  <Audio
+                  
+  height="25"
+  width="25"
+  color="#07162c"
   ariaLabel="audio-loading"
   wrapperStyle={{}}
   wrapperClass="wrapper-class"
   visible={true}
 />
+</div>
+
                 </div>
                 <div className="d-flex justify-content-center align-items-center ps-2 ">
                   <RxFontStyle className="w-100 rxfontstryle" onClick={showFontStyleBox} />
