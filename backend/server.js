@@ -70,7 +70,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-
 app.use("/api/seed", seedRouter);
 app.use("/api/user", userRouter);
 app.use("/api/project", projectRouter);
