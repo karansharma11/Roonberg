@@ -689,13 +689,14 @@ function ChatWindowScreen() {
                             ) : (
                               <>
                               <img onClick={handleforsetImage}
-                                src={
-                                  item.conversationId
-                                    ? item.image
-                                    : `${SocketUrl}/${item.image}`
-                                    // : `/${item.image}`
+                              src={item.image}
+                                // src={
+                                //   item.conversationId
+                                //     ? item.image
+                                //     : `${SocketUrl}/${item.image}`
+                                //     // : `/${item.image}`
 
-                                }
+                                // }
                                 className="chat-receiverMsg-inner w-100 p-2"
                               />
                             </>
@@ -783,13 +784,15 @@ function ChatWindowScreen() {
                               <>   
                                                          <img
                               onClick={handleforsetImage}
-                                src={
-                                  item.conversationId
-                                    ? item.image
-                                    : `${SocketUrl}/${item.image}`
-                                    // : `/${item.image}`
+                              src={item.image}
 
-                                }
+                                // src={
+                                //   item.conversationId
+                                //     ? item.image
+                                //     : `${SocketUrl}/${item.image}`
+                                //     // : `/${item.image}`
+
+                                // }
                                 className="chat-senderMsg-inner w-100 p-2"
                               />
                               
