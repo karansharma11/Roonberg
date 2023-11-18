@@ -18,6 +18,7 @@ import Notification from "./Models/notificationModel.js";
 import http from 'http';
 import fs from 'fs';
 import { Server } from 'socket.io';
+import {uploadDoc} from './routers/userRouter.js'
 
 
 
@@ -383,46 +384,48 @@ io.on('connection', (socket) => {
     // io.emit('audio', audioData);
   });
 
-  socket.on('image', (data) => {
+  socket.on('image', async(data) => {
     const base64Image = data.image;
     const senderId = getUser(data.senderId);
 
     // if (base64Image) {
     // Remove the data:image/jpeg;base64 prefix and convert to a Buffer
-    const imageBuffer = Buffer.from(
-      base64Image.replace(/^data:image\/\w+;base64,/, ''),
-      'base64'
-    );
+    // const imageBuffer = Buffer.from(
+    //   base64Image.replace(/^data:image\/\w+;base64,/, ''),
+    //   'base64'
+    // );
 
-    console.log('_dirname',_dirname)
-    const imageFileName = `${Date.now()}.jpeg`;
-    const filePath = process.env.NODE_ENV != 'development'?path.join(_dirname, `frontend/public/${imageFileName}`):path.join(_dirname, `../frontend/public/${imageFileName}`);
+    // console.log('_dirname',_dirname)
+    // const imageFileName = `${Date.now()}.jpeg`;
+    // const filePath = process.env.NODE_ENV != 'development'?path.join(_dirname, `frontend/public/${imageFileName}`):path.join(_dirname, `../frontend/public/${imageFileName}`);
    
-    console.log('imageFileName' , imageFileName )
-    console.log('filePath ',filePath)
+    // console.log('imageFileName' , imageFileName )
+    // console.log('filePath ',filePath)
+  //  const imageUrl =  await uploadDoc(base64Image,'image');
+  //  console.log('imageUrl ',imageUrl)
 
-    fs.writeFile(filePath, imageBuffer, (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-        // Broadcast the image URL to all clients
-        // io.to(agent.socketId).emit('image', {
-        //   senderId: data.senderId,
-        //   image: imageFileName,
-        // });
-        io.to(senderId.socketId).emit('image', {
-          senderFirstName: data.senderFirstName,
-          senderLastName: data.senderLastName,
-          Sender_Profile: data.Sender_Profile,
-          senderId: data.senderId,
-          image: imageFileName,
-        });
-      }
-    });
-    // } else {
-    //   // Broadcast the text message to all clients
-    //   io.emit('message', { text });
-    // }
+   io.to(senderId.socketId).emit('image', {
+    senderFirstName: data.senderFirstName,
+    senderLastName: data.senderLastName,
+    Sender_Profile: data.Sender_Profile,
+    senderId: data.senderId,
+    image: data.image,
+  });
+    // fs.writeFile(filePath, imageBuffer, (err) => {
+    //   if (err) {
+    //     console.error(err);
+    //   } else {
+     
+    //     io.to(senderId.socketId).emit('image', {
+    //       senderFirstName: data.senderFirstName,
+    //       senderLastName: data.senderLastName,
+    //       Sender_Profile: data.Sender_Profile,
+    //       senderId: data.senderId,
+    //       image: imageFileName,
+    //     });
+    //   }
+    // });
+
 
     if (data.receiverdId.length == 2) {
       // const text = data.text;
@@ -434,7 +437,7 @@ io.on('connection', (socket) => {
           senderLastName: data.senderLastName,
           Sender_Profile: data.Sender_Profile,
           senderId: data.senderId,
-          image: imageFileName,
+          image: data.image,
         });
       }
       if (contractor) {
@@ -443,7 +446,7 @@ io.on('connection', (socket) => {
           senderLastName: data.senderLastName,
           Sender_Profile: data.Sender_Profile,
           senderId: data.senderId,
-          image: imageFileName,
+          image: data.image,
         });
       }
     } else {
@@ -457,7 +460,7 @@ io.on('connection', (socket) => {
           senderLastName: data.senderLastName,
           Sender_Profile: data.Sender_Profile,
           senderId: data.senderId,
-          image: imageFileName,
+          image: data.image,
         });
       });
       if (user) {
@@ -467,7 +470,7 @@ io.on('connection', (socket) => {
           senderLastName: data.senderLastName,
           Sender_Profile: data.Sender_Profile,
           senderId: data.senderId,
-          image: imageFileName,
+          image: data.image,
         });
       }
     }

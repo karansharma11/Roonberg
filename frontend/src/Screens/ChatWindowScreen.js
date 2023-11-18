@@ -396,7 +396,6 @@ function ChatWindowScreen() {
           setSelectedVideo(base64Data);
         }
       };
-
       reader.readAsDataURL(file);
     } else if (file) {
       alert("Selected image file size exceeds the 40 MB limit.");
@@ -409,27 +408,6 @@ function ChatWindowScreen() {
     );
     console.log('receiverdId', receiverdId)
     if (selectedImage) {
-      if (userInfo.role === "admin" || userInfo.role === "superadmin") {
-        const messageData = {
-          senderFirstName: userInfo.first_name,
-          senderLastName: userInfo.last_name,
-          Sender_Profile: userInfo.profile_picture,
-          senderId: userInfo._id,
-          receiverdId: conversationID.members,
-          image: selectedImage,
-        };
-        socket.current.emit("image", messageData);
-      } else {
-        const messageData = {
-          senderFirstName: userInfo.first_name,
-          senderLastName: userInfo.last_name,
-          Sender_Profile: userInfo.profile_picture,
-          senderId: userInfo._id,
-          receiverdId: receiverdId,
-          image: selectedImage,
-        };
-        socket.current.emit("image", messageData);
-      }
       const formDatas = new FormData();
       formDatas.append("media", selectedfile);
       formDatas.append("mediaType", mediaType);
@@ -441,6 +419,27 @@ function ChatWindowScreen() {
       formDatas.append("Sender_Profile", userInfo.profile_picture);
       try {
         const { data } = await axios.post("/api/message/", formDatas);
+        if (userInfo.role === "admin" || userInfo.role === "superadmin") {
+          const messageData = {
+            senderFirstName: userInfo.first_name,
+            senderLastName: userInfo.last_name,
+            Sender_Profile: userInfo.profile_picture,
+            senderId: userInfo._id,
+            receiverdId: conversationID.members,
+            image: data.image,
+          };
+          socket.current.emit("image", messageData);
+        } else {
+          const messageData = {
+            senderFirstName: userInfo.first_name,
+            senderLastName: userInfo.last_name,
+            Sender_Profile: userInfo.profile_picture,
+            senderId: userInfo._id,
+            receiverdId: receiverdId,
+            image: data.image,
+          };
+          socket.current.emit("image", messageData);
+        }
       } catch (err) {
         console.log(err.response?.data?.message);
       }
