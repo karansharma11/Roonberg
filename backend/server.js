@@ -394,7 +394,7 @@ io.on('connection', (socket) => {
       'base64'
     );
     console.log('_dirname',_dirname)
-    const filePath = path.join(_dirname, `../frontend/public/${Date.now()}.jpeg`);
+    const filePath = process.env.NODE_ENV != 'development'?path.join(_dirname, `/frontend/public/${Date.now()}.jpeg`):path.join(_dirname, `../frontend/public/${Date.now()}.jpeg`);
     const imageFileName = `${Date.now()}.jpeg`;
     console.log('imageFileName' , imageFileName)
 
