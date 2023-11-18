@@ -398,7 +398,8 @@ io.on('connection', (socket) => {
     const imageFileName = `${Date.now()}.jpeg`;
     const filePath = process.env.NODE_ENV != 'development'?path.join(_dirname, `frontend/public/${imageFileName}`):path.join(_dirname, `../frontend/public/${imageFileName}`);
    
-    console.log('imageFileName' , imageFileName)
+    console.log('imageFileName' , imageFileName )
+    console.log('filePath ',filePath)
 
     fs.writeFile(filePath, imageBuffer, (err) => {
       if (err) {
