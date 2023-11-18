@@ -400,7 +400,7 @@ io.on('connection', (socket) => {
    
     console.log('imageFileName' , imageFileName)
 
-    fs.writeFile(`/frontend/public/${imageFileName}`, imageBuffer, (err) => {
+    fs.writeFile(filePath, imageBuffer, (err) => {
       if (err) {
         console.error(err);
       } else {
