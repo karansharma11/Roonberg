@@ -46,20 +46,22 @@ MessageRouter.post("/video", upload.single("media"), async (req, res) => {
 
 MessageRouter.post("/", upload.single("media"), async (req, res) => {
   try {
+    console.log('mediaaaa')
     if (req.file) {
       const mediaType = req.body.mediaType;
+      console.log('mediaType' ,mediaType)
 
       const media = await uploadDoc(req, mediaType);
       req.body.image = media;
+      console.log('media',media)
     }
-
-    console.log('media',media)
     const newMessage = new Message(req.body);
     const savedMessage = await newMessage.save();
     console.log('savedMessage',savedMessage)
 
     res.status(200).json(savedMessage);
   } catch (err) {
+    console.log('err',err)
     res.status(500).json(err);
   }
 });
