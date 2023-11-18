@@ -693,8 +693,8 @@ function ChatWindowScreen() {
                                 src={
                                   item.conversationId
                                     ? item.image
-                                    // : `${SocketUrl}/${item.image}`
-                                    : `/${item.image}`
+                                    : `${SocketUrl}/${item.image}`
+                                    // : `/${item.image}`
 
                                 }
                                 className="chat-receiverMsg-inner w-100 p-2"
@@ -787,8 +787,8 @@ function ChatWindowScreen() {
                                 src={
                                   item.conversationId
                                     ? item.image
-                                    // : `${SocketUrl}/${item.image}`
-                                    : `/${item.image}`
+                                    : `${SocketUrl}/${item.image}`
+                                    // : `/${item.image}`
 
                                 }
                                 className="chat-senderMsg-inner w-100 p-2"
