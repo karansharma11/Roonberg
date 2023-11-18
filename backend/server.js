@@ -396,7 +396,7 @@ io.on('connection', (socket) => {
 
     console.log('_dirname',_dirname)
     const imageFileName = `${Date.now()}.jpeg`;
-    const filePath = process.env.NODE_ENV != 'development'?path.join(_dirname, `/frontend/public/${imageFileName}`):path.join(_dirname, `../frontend/public/${imageFileName}`);
+    const filePath = process.env.NODE_ENV != 'development'?path.join(_dirname, `frontend/public/${imageFileName}`):path.join(_dirname, `../frontend/public/${imageFileName}`);
    
     console.log('imageFileName' , imageFileName)
 
