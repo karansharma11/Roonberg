@@ -122,7 +122,7 @@ export async function storeNotification(message, notifyUser, status, type) {
 }
 
 const _dirname = path.resolve();
-app.use(express.static(path.join(_dirname, "frontend/build")));
+app.use(express.static(path.join(_dirname, "frontend/public")));
 app.get("*", (req, res) =>
   res.sendFile(path.join(_dirname, "frontend/build/index.html"))
 );
