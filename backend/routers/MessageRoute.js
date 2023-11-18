@@ -53,8 +53,11 @@ MessageRouter.post("/", upload.single("media"), async (req, res) => {
       req.body.image = media;
     }
 
+    console.log('media',media)
     const newMessage = new Message(req.body);
     const savedMessage = await newMessage.save();
+    console.log('savedMessage',savedMessage)
+
     res.status(200).json(savedMessage);
   } catch (err) {
     res.status(500).json(err);
